@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Buscar película</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Buscar</button>
+  </form>
+  <hr>
+  <h2>Resultados</h2>
+  <ul>
+    {% for movie in movies %}
+      <li>{{ movie.title }} ({{ movie.year }}) - {{ movie.director }}</li>
+    {% empty %}
+      <li>No se encontraron películas</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
